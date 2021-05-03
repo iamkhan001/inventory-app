@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewRoot"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="@dimen/space_s"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgLocation"
+                android:src="@drawable/ic_location"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/space_s"
+                android:layout_marginTop="@dimen/space_s"
+                android:layout_width="@dimen/size_s"
+                android:layout_height="@dimen/size_s"
+                app:tint="@color/primary" />
+
+            <Spinner
+                android:id="@+id/spnLocation"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/space_s"
+                app:layout_constraintStart_toEndOf="@id/imgLocation"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/size_s"/>
+
+            <ImageView
+                android:id="@+id/imgSearch"
+                android:src="@drawable/ic_search"
+                android:padding="2dp"
+                app:layout_constraintEnd_toStartOf="@id/imgFilter"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="@dimen/space_s"
+                android:layout_marginTop="@dimen/space_s"
+                android:layout_width="@dimen/size_s"
+                android:layout_height="@dimen/size_s"
+                app:tint="@color/primary" />
+
+            <ImageView
+                android:id="@+id/imgFilter"
+                android:src="@drawable/ic_filter"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="@dimen/space_s"
+                android:layout_marginTop="@dimen/space_s"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="@dimen/size_s"
+                android:layout_height="@dimen/size_s"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginVertical="@dimen/space_ss"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgFilter"
+                android:padding="@dimen/space_s"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/viewSearch"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/cardViewRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_marginHorizontal="@dimen/space_s"
+            android:layout_marginVertical="@dimen/space_l"
+            android:background="@drawable/bg_box_gray_border_r"
+            android:textSize="@dimen/text_m"
+            android:hint="@string/search"
+            android:drawablePadding="@dimen/space_m"
+            android:drawableStart="@drawable/ic_search"
+            android:paddingVertical="@dimen/space_ss"
+            android:paddingHorizontal="@dimen/space_s"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/imgClear"
+            android:src="@drawable/ic_close"
+            android:padding="2dp"
+            app:layout_constraintEnd_toStartOf="@id/imgFilter"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="@dimen/space_s"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/size_s"
+            android:layout_height="@dimen/size_s"
+            app:tint="@color/primary" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

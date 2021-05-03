@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="primary">#E29D5A</color>
+    <color name="primaryDark">#BF6E1F</color>
+    <color name="primaryDisabled">#B0957A</color>
+
+    <color name="textPrimary">#2B2B2B</color>
+    <color name="placeHolder">#C6C6C6</color>
+    <color name="buttonText">#FFFFFF</color>
+
+    <color name="red">#d32f2f</color>
+    <color name="red_s">#f00</color>
+    <color name="grey">#a9a9a9</color>
+    <color name="transparent">#00000000</color>
+    <color name="green">#54955b</color>
+    <color name="background">#e5e5e5</color>
+    <color name="white_2">#f5f6fa</color>
+    <color name="white_3">#E3E1E1</color>
+    <color name="gray">#888888</color>
+    <color name="gray_dark">#707070</color>
+    <color name="gray_lite">#c6c6c6</color>
+    <color name="gray_lite_2">#DEDEDE</color>
+    <color name="purple">#cd5cff</color>
+    <color name="cal_selected">#FFEFDE</color>
+    <color name="dal_day_selected">#d4d4d4</color>
+    <color name="red_box">#e66b70</color>
+    <color name="gold">#D09F0C</color>
+    <color name="progress_break">#4CAF50</color>
+    <color name="progress_over">#F44336</color>
+    <color name="green_dark">#306F32</color>
+    <color name="icon_appr">#f5f6fa</color>
+    <color name="bg_checked">#f0f0fe</color>
+    <color name="check_color">#399aeb</color>
+    <color name="prime_lite">#FFD5AB</color>
+
+</resources>

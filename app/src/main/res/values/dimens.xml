@@ -1,0 +1,49 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="screen_horizontal_padding">20dp</dimen>
+    <dimen name="screen_vertical_padding">16dp</dimen>
+    <dimen name="button_radius">8dp</dimen>
+
+    <dimen name="text_s">10sp</dimen>
+    <dimen name="text_sm">12sp</dimen>
+    <dimen name="text_m">14sp</dimen>
+    <dimen name="text_ml">16sp</dimen>
+    <dimen name="text_l">17sp</dimen>
+    <dimen name="text_h1">19sp</dimen>
+    <dimen name="text_h2">24sp</dimen>
+    <dimen name="text_h3">28sp</dimen>
+
+    <dimen name="space_s">4dp</dimen>
+    <dimen name="space_ss">6dp</dimen>
+    <dimen name="space_m">8dp</dimen>
+    <dimen name="space_l">12dp</dimen>
+    <dimen name="space_xl">16dp</dimen>
+    <dimen name="space_xxl">20dp</dimen>
+    <dimen name="space_xxxl">24dp</dimen>
+
+    <dimen name="size_s">30dp</dimen>
+    <dimen name="size_ss">35dp</dimen>
+    <dimen name="size_sss">40dp</dimen>
+    <dimen name="size_sm">45dp</dimen>
+    <dimen name="size_m">55dp</dimen>
+    <dimen name="size_ml">70dp</dimen>
+    <dimen name="size_mml">60dp</dimen>
+    <dimen name="size_l">80dp</dimen>
+    <dimen name="size_xl">100dp</dimen>
+    <dimen name="size_xx">110dp</dimen>
+    <dimen name="otp_box">45dp</dimen>
+    <dimen name="otp_radius">10dp</dimen>
+    <dimen name="intro_image">100dp</dimen>
+    <dimen name="size_xxl">150dp</dimen>
+    <dimen name="shift_time_w">85dp</dimen>
+    <dimen name="box_radius">2dp</dimen>
+    <dimen name="cal_w">360dp</dimen>
+    <dimen name="cal_h">375dp</dimen>
+    <dimen name="cal_day">50dp</dimen>
+    <dimen name="cal_day_today">42dp</dimen>
+    <dimen name="cal_day_selected">35dp</dimen>
+    <dimen name="spinner_width">150dp</dimen>
+    <dimen name="map_height">350dp</dimen>
+    <dimen name="inv_btn">18dp</dimen>
+
+</resources>

@@ -1,0 +1,195 @@
+<resources>
+    <string name="app_name">Inventory</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nymbleup">NymbleUp</string>
+    <string name="workforce_planning">Workforce Planning</string>
+    <string name="mymble_up_info">NymbleUp provides the most comprehensive labour planning and scheduling tool.</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="step_1_of_4">STEP 1 OF 4</string>
+    <string name="step_2_of_4">STEP 2 OF 4</string>
+    <string name="step_3_of_4">STEP 3 OF 4</string>
+    <string name="step_4_of_4">STEP 4 OF 4</string>
+    <string name="enter_your_details">Enter your details</string>
+    <string name="back">back</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <string name="by_continuing_you_agree_to_accept_our">By continuing, you agree to accept our</string>
+    <string name="privacy_policy_amp_terms_of_service"><![CDATA[Privacy Policy & Terms of Service.]]></string>
+    <string name="continue_cap">CONTINUE</string>
+    <string name="company_name">Company Name</string>
+    <string name="nature_of_business">Nature of Business</string>
+    <string name="city">City</string>
+    <string name="address_line1_optional">Address Line1 (Optional)</string>
+    <string name="address_line2_optional">Address Line2 (Optional)</string>
+    <string name="zip_pin_code">Zip/Pin Code</string>
+    <string name="country">Country</string>
+    <string name="state">State</string>
+    <string name="activate_account">Activate Account</string>
+    <string name="activate_info">Please click on the confirmation link sent on your registered email address to activate your account</string>
+    <string name="resend_help">I didn\'t received a confirmation email.</string>
+    <string name="resend_email">Resend email</string>
+    <string name="enter_company_details">Tell us about your company</string>
+    <string name="set_password">Set Password</string>
+    <string name="acount_activated">Congratulations,\nYour account has beed activated!</string>
+    <string name="sign_into_your_with_your_registered_email_id_or_mobile_number">Sign into your account with your registered email</string>
+    <string name="email_mobile_number">Email</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="forgot_password_info">Enter the email address associated with your account. We will send a verification link to reset your password.</string>
+    <string name="select_country">Select country</string>
+    <string name="select_state">Select state</string>
+    <string name="select_nature_of_business">Select nature of business</string>
+    <string name="title_account">Account</string>
+    <string name="logout">Logout</string>
+    <string name="mobile">mobile</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="invalid_link">Invalid Link!</string>
+    <string name="title_time_clock">Time Clock</string>
+    <string name="title_schedule">Schedule</string>
+    <string name="title_team">Team</string>
+    <string name="title_more">More</string>
+    <string name="title_time_sheet">Timesheets</string>
+    <string name="search_store">Search Store...</string>
+    <string name="select_store">Select Store</string>
+    <string name="day">Day</string>
+    <string name="week">Week</string>
+    <string name="date">Date</string>
+    <string name="self">(self)</string>
+    <string name="open_shift">Open Shift</string>
+    <string name="no_record_found">No record found</string>
+    <string name="select_business_type">Select business type</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="create_new_password">Create new password</string>
+    <string name="enter_new_password">Enter your new password</string>
+    <string name="password_reset_successful">Password reset successful!</string>
+    <string name="you_can_now_use_your_new_password_to_login_into_your_account">You can now use your new password to login into your account!</string>
+    <string name="login">Login</string>
+    <string name="edit_shift">Edit Shift</string>
+    <string name="delete_shift">Delete Shift</string>
+    <string name="update">Update</string>
+    <string name="departments">Departments</string>
+    <string name="employees">Employees</string>
+    <string name="function">Function</string>
+    <string name="checked_in">Checked in -</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="break_1">Break 1</string>
+    <string name="break_2">Break 2</string>
+    <string name="start_shift">START SHIFT</string>
+    <string name="start_break_1">START BREAK</string>
+    <string name="start_break_2">START BREAK 2</string>
+    <string name="end_break_1">END BREAK 1</string>
+    <string name="end_break_2">END BREAK 2</string>
+    <string name="end_shift">END SHIFT</string>
+    <string name="shift_detail">Shift Detail</string>
+    <string name="note">Note</string>
+    <string name="add_notes">Add Notes</string>
+    <string name="resume">RESUME</string>
+    <string name="approve">Approve</string>
+    <string name="approved">Approved</string>
+
+    <string name="default_notification_channel_id">workforce</string>
+    <string name="channel_name">workforce</string>
+    <string name="approve_selected">Approve Selected</string>
+    <string name="cancel">cancel</string>
+    <string name="select_all">Select All</string>
+    <string name="un_select_all">Unselect All</string>
+    <string name="no_shifts">No Shifts</string>
+    <string name="time_in_time_out">Time In | Time Out</string>
+    <string name="schedule_time">Schedule Time</string>
+    <string name="profile">Profile</string>
+    <string name="leaves">Leave</string>
+    <string name="upcoming_shifts">Upcoming Shifts</string>
+    <string name="shift_preferences">Shift Preferences</string>
+    <string name="requests">Request</string>
+    <string name="events">Events</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="add_leave">Add Leave</string>
+    <string name="approve_leave">Approve Leave</string>
+    <string name="shift_ended">Shift Ended</string>
+    <string name="device_details">Device Details</string>
+    <string name="share_logs">Share Logs</string>
+    <string name="search">Search</string>
+    <string name="status">Status</string>
+    <string name="full_name">Full Name</string>
+    <string name="gender">Gender</string>
+    <string name="birthday">Birthday</string>
+    <string name="department">Department</string>
+    <string name="type">Type</string>
+    <string name="designation">Designation</string>
+    <string name="pay_type">Pay Type</string>
+    <string name="rate">Rate</string>
+    <string name="inr">INR</string>
+    <string name="dashes">----------</string>
+    <string name="filter">Filter Team</string>
+    <string name="apply">Apply</string>
+    <string name="clear">Clear</string>
+    <string name="edit">Edit</string>
+    <string name="create_account">Create account</string>
+    <string name="dash_date">-- / -- / ----</string>
+    <string name="leave_till">Leave Till</string>
+    <string name="leave_type">Leave Type</string>
+    <string name="total_days">Total Days</string>
+    <string name="mark_as">Mark As</string>
+    <string name="paid_leave">Paid Leave</string>
+    <string name="unpaid_leave">Unpaid Leave</string>
+    <string name="notes">Notes</string>
+    <string name="leave_from">Leave From</string>
+    <string name="select_employee">Select Employee</string>
+    <string name="request_leave">Request Leave</string>
+    <string name="approve_from">Approve From</string>
+    <string name="approve_till">Approve To</string>
+    <string name="employee">Employee</string>
+    <string name="reject">Reject</string>
+    <string name="delete">Delete</string>
+    <string name="total">Total:</string>
+    <string name="itemName">Item Name</string>
+    <string name="count">Count</string>
+    <string name="usage">Usage:</string>
+    <string name="pack">Pack</string>
+    <string name="loose">Loose</string>
+    <string name="stock_count">Stock Count</string>
+    <string name="orders">Orders</string>
+
+    <string-array name="sample">
+        <item>00:00</item>
+        <item>01:00</item>
+        <item>02:00</item>
+        <item>03:00</item>
+        <item>04:00</item>
+        <item>05:00</item>
+        <item>06:00</item>
+        <item>07:00</item>
+        <item>08:00</item>
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+        <item>22:00</item>
+        <item>23:00</item>
+        <item>24:00</item>
+    </string-array>
+
+    <string-array name="gender_options">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.dialogs.SelectStoreDialog">
+
+    <TextView
+        android:id="@+id/header"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="@dimen/space_l"
+        android:paddingTop="@dimen/space_l"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textSize="@dimen/text_h1"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:text="@string/select_store"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/etSearch"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:padding="@dimen/space_l"
+        android:drawableEnd="@drawable/ic_search"
+        android:visibility="invisible"
+        android:hint="@string/search_store"
+        android:background="@color/white_2"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/textPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <FrameLayout
+        app:layout_constraintTop_toBottomOf="@id/etSearch"
+        android:paddingBottom="@dimen/size_xl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvList"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_store_select"
+            android:paddingHorizontal="@dimen/space_l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "972966882525",
+    "project_id": "nymbleup-mobile-app",
+    "storage_bucket": "nymbleup-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972966882525:android:aa00d5dc562d5a3f66ff34",
+        "android_client_info": {
+          "package_name": "com.nymbleup.inventory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972966882525-a51se3ot4res20bndku88rugr4tcc1hv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJFnF3WzMOvtcHroZofpb2DKQ24Li_GB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972966882525-a51se3ot4res20bndku88rugr4tcc1hv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
