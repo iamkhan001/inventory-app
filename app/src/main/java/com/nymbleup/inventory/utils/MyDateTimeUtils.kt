@@ -292,11 +292,14 @@ object MyDateTimeUtils {
 
     }
 
-    fun formatDate(dateString: String): String {
+    fun formatDate(dateString: String?): String? {
 
 
         val objDateStart: Date
         try {
+            if (dateString.isNullOrEmpty()) {
+                return ""
+            }
             objDateStart = dateFormat.parse(dateString) ?: return dateString
         }catch (e: Exception){
             return dateString

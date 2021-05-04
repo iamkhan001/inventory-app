@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.nymbleup.inventory.config.StoreDataProvider
 import com.nymbleup.inventory.models.*
 import com.nymbleup.inventory.models.Function
+import com.nymbleup.inventory.models.orders.Order
 import com.nymbleup.inventory.repo.ScheduleApiRepository
 import com.nymbleup.inventory.repo.UIApiCallResponseListener
 import com.nymbleup.inventory.repo.UserApiRepository
@@ -165,5 +166,12 @@ class SupportDataViewModel: ViewModel() {
             scheduleApiRepository.updateStockCount(stocks, uiApiCallResponseListener)
         }
     }
+    val mOrders = MutableLiveData<ArrayList<Order>>()
 
+
+    fun loadOrders(uiApiCallResponseListener: UIApiCallResponseListener){
+        viewModelScope.launch {
+            scheduleApiRepository.loadOrders(mOrders,uiApiCallResponseListener)
+        }
+    }
 }

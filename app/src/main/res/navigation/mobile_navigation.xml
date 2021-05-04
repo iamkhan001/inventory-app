@@ -8,7 +8,11 @@
         android:id="@+id/nav_orders"
         android:name="com.nymbleup.inventory.ui.fragments.OrdersFragment"
         android:label="fragment_orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_nav_orders_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_logout"
         android:name="com.nymbleup.inventory.ui.fragments.ProfileFragment"
@@ -19,4 +23,13 @@
         android:name="com.nymbleup.inventory.ui.fragments.StockFragment"
         android:label="fragment_stock"
         tools:layout="@layout/fragment_stock" />
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.nymbleup.inventory.ui.fragments.OrderDetailFragment"
+        android:label="fragment_order_detail"
+        tools:layout="@layout/fragment_order_detail" >
+        <argument
+            android:name="order"
+            app:argType="com.nymbleup.inventory.models.orders.Order" />
+    </fragment>
 </navigation>

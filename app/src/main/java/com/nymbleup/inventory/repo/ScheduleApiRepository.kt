@@ -1,7 +1,6 @@
 package com.nymbleup.inventory.repo
 
 import android.content.Context
-import android.location.Location
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
@@ -9,9 +8,9 @@ import com.nymbleup.inventory.config.*
 import com.nymbleup.inventory.models.Item
 import com.nymbleup.inventory.models.Outlet
 import com.nymbleup.inventory.models.User
+import com.nymbleup.inventory.models.orders.Order
 import com.nymbleup.inventory.utils.DataConverter
 import com.nymbleup.inventory.utils.MyDateTimeUtils
-import com.nymbleup.inventory.utils.MyDateTimeUtils.getDiffInDays
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -21,7 +20,6 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.HttpException
 import retrofit2.Response
-import java.util.concurrent.Executors
 
 private const val TAG = "S-API"
 class ScheduleApiRepository(context: Context) {
@@ -382,6 +380,48 @@ class ScheduleApiRepository(context: Context) {
                     }
                     it.printStackTrace()
                 }))
+
+    }
+
+    fun loadOrders(mOrder: MutableLiveData<ArrayList<Order>>, responseListener: UIApiCallResponseListener){
+        val outlets = arrayOf(storeDataProvider.getStoreId())
+
+        val parameters = HashMap<String, Any?>()
+        parameters["date_start"] = "2020-08-15"
+        parameters["date_end"] =  "2020-11-24"
+        parameters["outlet"] = outlets
+        parameters["vendor"] = arrayListOf<String>()
+        parameters["status"] = arrayListOf<String>()
+
+        compositeDisposable.add(apiInterface.orderList(parameters)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+
+                try {
+                    val response = it.string().trim()
+                    Log.e(TAG, "fetchData > $response")
+                    val array = JSONArray(response)
+                    val list = DataConverter.toOrders(array)
+                    mOrder.postValue(list)
+                    responseListener.onSuccess("")
+                    return@subscribe
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+                responseListener.onFailed("Server Error")
+            }, {
+
+                if (it is HttpException) {
+                    val exception: HttpException = it
+                    val response = exception.response()
+
+                    Log.e(TAG,"Error: ${response?.code()} \n${response?.errorBody()}")
+                    responseListener.onFailed("Error")
+                }
+                it.printStackTrace()
+            }))
 
     }
 }
