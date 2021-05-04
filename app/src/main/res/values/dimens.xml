@@ -22,6 +22,7 @@
     <dimen name="space_xxxl">24dp</dimen>
 
     <dimen name="size_s">30dp</dimen>
+    <dimen name="size_n">25dp</dimen>
     <dimen name="size_ss">35dp</dimen>
     <dimen name="size_sss">40dp</dimen>
     <dimen name="size_sm">45dp</dimen>

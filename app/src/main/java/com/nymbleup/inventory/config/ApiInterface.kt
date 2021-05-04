@@ -29,6 +29,9 @@ interface ApiInterface {
     @POST("api/v1/users/activate/")
     fun activateUser(@Body body: HashMap<String, String>): Call<ResponseBody>
 
+    @POST("api/v1/orders/query/?get_all=true")
+    fun orderList(@Body body: HashMap<String, Any?>): Observable<ResponseBody>
+
     @GET("api/v1/users/self/")
     fun userInfo(): Call<ResponseBody>
 

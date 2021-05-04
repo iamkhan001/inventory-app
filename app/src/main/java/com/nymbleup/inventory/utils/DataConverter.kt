@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.nymbleup.inventory.models.*
 import com.nymbleup.inventory.models.Function
+import com.nymbleup.inventory.models.orders.Orders
 import org.json.JSONArray
 
 object DataConverter {
@@ -34,6 +35,11 @@ object DataConverter {
 
     fun toInventory(data: JSONArray): ArrayList<Item> {
         val typeToken = object : TypeToken<ArrayList<Item>>() {}.type
+        return Gson().fromJson(data.toString(), typeToken)
+    }
+
+    fun toOrders(data: JSONArray): ArrayList<Orders> {
+        val typeToken = object : TypeToken<ArrayList<Orders>>() {}.type
         return Gson().fromJson(data.toString(), typeToken)
     }
 

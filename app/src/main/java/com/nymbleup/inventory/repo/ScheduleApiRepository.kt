@@ -9,6 +9,7 @@ import com.nymbleup.inventory.config.*
 import com.nymbleup.inventory.models.Item
 import com.nymbleup.inventory.models.Outlet
 import com.nymbleup.inventory.models.User
+import com.nymbleup.inventory.models.orders.Orders
 import com.nymbleup.inventory.utils.DataConverter
 import com.nymbleup.inventory.utils.MyDateTimeUtils
 import com.nymbleup.inventory.utils.MyDateTimeUtils.getDiffInDays
@@ -382,6 +383,48 @@ class ScheduleApiRepository(context: Context) {
                     }
                     it.printStackTrace()
                 }))
+
+    }
+
+    fun loadOrders(mOrders: MutableLiveData<ArrayList<Orders>>, responseListener: UIApiCallResponseListener){
+        val outlets = arrayOf(storeDataProvider.getStoreId())
+
+        val parameters = HashMap<String, Any?>()
+        parameters["date_start"] = "2020-08-15"
+        parameters["date_end"] =  "2020-11-24"
+        parameters["outlet"] = outlets
+        parameters["vendor"] = arrayListOf<String>()
+        parameters["status"] = arrayListOf<String>()
+
+        compositeDisposable.add(apiInterface.orderList(parameters)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+
+                try {
+                    val response = it.string().trim()
+                    Log.e(TAG, "fetchData > $response")
+                    val array = JSONArray(response)
+                    val list = DataConverter.toOrders(array)
+                    mOrders.postValue(list)
+
+                    return@subscribe
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+                responseListener.onFailed("Server Error")
+            }, {
+
+                if (it is HttpException) {
+                    val exception: HttpException = it
+                    val response = exception.response()
+
+                    Log.e(TAG,"Error: ${response?.code()} \n${response?.errorBody()}")
+                    responseListener.onFailed("Error")
+                }
+                it.printStackTrace()
+            }))
 
     }
 }
