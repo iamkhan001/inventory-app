@@ -18,7 +18,7 @@ import com.nymbleup.inventory.models.Item
 import com.nymbleup.inventory.models.orders.Items
 import com.nymbleup.inventory.models.orders.Order
 
-class OrderDetailAdapter(private val context: Context) :
+class OrderDetailAdapter(private val context: Context, private val status :String) :
     RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder>(), Filterable {
 
     private var list = ArrayList<Items>()
@@ -50,7 +50,6 @@ class OrderDetailAdapter(private val context: Context) :
         val item = filterList[position]
         item.init()
         val binding = holder.binding
-
 
         binding.tvItemName.text = item.itemInfo.article.name
         binding.tvItemDescription.text = "${item.itemInfo.article.code}\n1 pack = ${item.itemInfo.article.primaryShelfLife} each"
@@ -89,6 +88,19 @@ class OrderDetailAdapter(private val context: Context) :
 
         binding.etPack.setText(item.newPackQty.toString())
 
+        if (status == "dispatched"){
+
+            binding.imgPackAdd.isEnabled = true
+            binding.etPack.isEnabled = true
+            binding.imgPackMinus.isEnabled = true
+
+        }else{
+
+            binding.imgPackAdd.isEnabled = false
+            binding.etPack.isEnabled = false
+            binding.imgPackMinus.isEnabled = false
+
+        }
 
 
 

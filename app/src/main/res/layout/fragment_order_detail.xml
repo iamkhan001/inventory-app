@@ -1,95 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.OrderDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/black"
         android:paddingVertical="@dimen/space_l"
-        android:background="@color/black">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvTitle"
-            android:text="@string/orders"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center_horizontal"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_l"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:gravity="center_horizontal"
+            android:text="@string/orders"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_l"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <FrameLayout
+        android:id="@+id/viewFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <include
+            android:id="@+id/filter"
+            layout="@layout/view_filter" />
+
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:indeterminate="true"
+        android:progressTint="@color/primary"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/viewFilter" />
+
+
     <TextView
         android:id="@+id/tvPoNumber"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="@dimen/size_xx"
         android:layout_height="wrap_content"
-        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_margin="@dimen/space_l"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         android:text="PO Number"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header" />
+        app:layout_constraintTop_toBottomOf="@id/viewFilter" />
 
     <TextView
         android:id="@+id/tvCreateOn"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="@dimen/size_xx"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_margin="@dimen/space_l"
         android:text="Create On"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvPoNumber" />
+
     <TextView
         android:id="@+id/tvDeliveryDate"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="@dimen/size_xx"
         android:layout_height="wrap_content"
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         android:layout_margin="@dimen/space_l"
         android:text="Delivery Date"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCreateOn" />
+
     <TextView
         android:id="@+id/tvOrderStatus"
-        android:textStyle="bold"
-        android:textColor="@color/black"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="@dimen/size_xx"
         android:layout_height="wrap_content"
-        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_margin="@dimen/space_l"
         android:text="Order Status"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDeliveryDate" />
 
     <TextView
         android:id="@+id/tvPoNumberDetail"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_l"
         android:layout_marginTop="@dimen/space_l"
-        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvPoNumber"
-        app:layout_constraintTop_toBottomOf="@id/header" />
+        app:layout_constraintTop_toBottomOf="@id/viewFilter" />
 
     <TextView
         android:id="@+id/tvCreateOnDetail"
-        android:layout_height="wrap_content"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_l"
         android:layout_marginTop="@dimen/space_l"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,8 +124,8 @@
 
     <TextView
         android:id="@+id/tvDeliveryDateDetail"
-        android:layout_height="wrap_content"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_l"
         android:layout_marginTop="@dimen/space_l"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,8 +134,8 @@
 
     <TextView
         android:id="@+id/tvOrderStatusDetail"
-        android:layout_height="wrap_content"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_l"
         android:layout_marginTop="@dimen/space_l"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,16 +147,16 @@
         android:layout_width="@dimen/size_xx"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_l"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         android:text="Total"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvOrderStatus" />
 
     <TextView
         android:id="@+id/tvItemCount"
-        android:layout_height="wrap_content"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_l"
         android:layout_marginTop="@dimen/space_l"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,38 +165,38 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/viewHeaders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_l"
         app:cardBackgroundColor="@color/white_2"
         app:cardUseCompatPadding="true"
-        app:layout_constraintTop_toBottomOf="@id/tvTotalItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        app:layout_constraintTop_toBottomOf="@id/tvTotalItem">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvItem"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_l"
+                android:layout_weight="1"
                 android:text="ITEM"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvCount"
-                android:gravity="center"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_l"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="COUNT"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -180,10 +206,10 @@
         android:id="@+id/rvOrderDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_order_detail"
         android:layout_marginTop="@dimen/space_m"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/viewHeaders"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        tools:listitem="@layout/item_order_detail" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
