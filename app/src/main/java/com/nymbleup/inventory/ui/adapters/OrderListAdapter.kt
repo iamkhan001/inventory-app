@@ -58,6 +58,10 @@ class OrderListAdapter(private val context: Context,val onItemClickListener: OnI
                 holder.binding.btnRecAndCan.text = "Closed"
             }
 
+            "dispatched" ->{
+                holder.binding.btnRecAndCan.text="Dispatched"
+            }
+
             else -> {
                 holder.binding.btnRecAndCan.text = order.status
             }

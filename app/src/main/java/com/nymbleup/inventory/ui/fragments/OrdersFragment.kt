@@ -1,6 +1,8 @@
 package com.nymbleup.inventory.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -13,11 +15,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.mirobotic.dialog.myDialog.SweetAlertDialog
 import com.nymbleup.inventory.databinding.FragmentOrderListBinding
+import com.nymbleup.inventory.models.ScheduleView
 import com.nymbleup.inventory.models.orders.Order
 import com.nymbleup.inventory.repo.UIApiCallResponseListener
 import com.nymbleup.inventory.ui.adapters.OnItemClickListener
 import com.nymbleup.inventory.ui.adapters.OrderListAdapter
 import com.nymbleup.inventory.ui.adapters.OutletsAdapter
+import com.nymbleup.inventory.ui.adapters.calendar.DateRangeAdapter
+import com.nymbleup.inventory.ui.dialogs.CalendarDialog
 import com.nymbleup.inventory.ui.viewModels.SupportDataViewModel
 import com.nymbleup.inventory.utils.KeyboardUtils
 import com.nymbleup.inventory.utils.MyDateTimeUtils
@@ -26,6 +31,10 @@ class OrdersFragment : Fragment() {
 
     private var safebinding: FragmentOrderListBinding? = null
     private val binding get() = safebinding!!
+
+
+    private val handler = Handler(Looper.getMainLooper())
+    private var dateRangeAdapter: DateRangeAdapter? = null
 
     private val dataViewModel: SupportDataViewModel by activityViewModels()
     private var alertDialog: SweetAlertDialog? = null
@@ -47,6 +56,27 @@ class OrdersFragment : Fragment() {
 
     }
 
+    private val onDateRangeSelectedListener = object : CalendarDialog.OnDateRangeSelectedListener {
+
+        override fun onRangeSelected(dateStart: String, dateEnd: String) {
+
+        }
+
+        override fun onDateSelected(date: String) {
+            if (checkIfDataLoading()) {
+                return
+            }
+
+            dateRangeAdapter?.selected(date)
+            handler.postDelayed({ CalendarDialog.hide() }, 200)
+        }
+
+    }
+
+    private fun checkIfDataLoading(): Boolean {
+        return (dataViewModel.mIsLoadingSchedule.value == true || dataViewModel.isLoading.value == true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,6 +88,38 @@ class OrdersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        dataViewModel.mShowingDayDates.observe(viewLifecycleOwner, {
+            binding.filter.tvDate.text = it
+        })
+
+        val dayClickListener = object : OnItemClickListener<String> {
+            override fun onClick(item: String) {
+                if (checkIfDataLoading()) {
+                    return
+                }
+                dateRangeAdapter?.selected(item)
+            }
+        }
+
+        dateRangeAdapter = DateRangeAdapter()
+        dateRangeAdapter?.onDayClickListener = dayClickListener
+        dateRangeAdapter?.selected(dataViewModel.dateStart)
+
+        dataViewModel.mDateRange.observe(viewLifecycleOwner, {
+            dateRangeAdapter?.setDataList(it)
+        })
+
+        binding.filter.tvDate.setOnClickListener {
+
+            CalendarDialog.show(
+                ScheduleView.DAY,
+                dataViewModel.dateStart,
+                childFragmentManager,
+                onDateRangeSelectedListener
+            )
+        }
 
         dataViewModel.mOutlets.observe(viewLifecycleOwner, {
             val outletAdapter = OutletsAdapter(it)
@@ -81,31 +143,32 @@ class OrdersFragment : Fragment() {
             Log.e("mOutlets", "total ${it.size}")
         })
 
-        binding.filter.spnLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
+        binding.filter.spnLocation.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
                     parent: AdapterView<*>?,
                     view: View?,
                     position: Int,
                     id: Long
-            ) {
+                ) {
 
-                if (!isReady){
-                    return
-                }
-                dataViewModel.mOutlets.value?.let {
-                    binding.progressBar.visibility = View.VISIBLE
-                    dataViewModel.setSelectedStore(it[position])
+                    if (!isReady) {
+                        return
+                    }
+                    dataViewModel.mOutlets.value?.let {
+                        binding.progressBar.visibility = View.VISIBLE
+                        dataViewModel.setSelectedStore(it[position])
+                    }
+
+                    isReady = false
+
                 }
 
-                isReady = false
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
 
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
 
         binding.filter.tvDate.text = MyDateTimeUtils.getDatePretty()
 

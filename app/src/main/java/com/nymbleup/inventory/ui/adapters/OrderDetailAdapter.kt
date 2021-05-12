@@ -16,6 +16,7 @@ import com.nymbleup.inventory.databinding.ItemInventoryBinding
 import com.nymbleup.inventory.databinding.ItemOrderDetailBinding
 import com.nymbleup.inventory.models.Item
 import com.nymbleup.inventory.models.orders.Items
+import com.nymbleup.inventory.models.orders.Order
 
 class OrderDetailAdapter(private val context: Context) :
     RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder>(), Filterable {
@@ -49,6 +50,7 @@ class OrderDetailAdapter(private val context: Context) :
         val item = filterList[position]
         item.init()
         val binding = holder.binding
+
 
         binding.tvItemName.text = item.itemInfo.article.name
         binding.tvItemDescription.text = "${item.itemInfo.article.code}\n1 pack = ${item.itemInfo.article.primaryShelfLife} each"
@@ -86,6 +88,9 @@ class OrderDetailAdapter(private val context: Context) :
         }
 
         binding.etPack.setText(item.newPackQty.toString())
+
+
+
 
 
     }

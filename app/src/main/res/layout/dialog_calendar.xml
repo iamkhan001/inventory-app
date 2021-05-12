@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/cal_w"
+    android:layout_height="@dimen/cal_h"
+    android:background="@color/white"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/space_m"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/btnPrev"
+        android:src="@drawable/ic_chevron_left"
+        android:layout_marginStart="@dimen/space_m"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="@dimen/size_s"
+        android:layout_height="@dimen/size_s"/>
+
+    <TextView
+        android:id="@+id/tvMonth"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/btnPrev"
+        app:layout_constraintStart_toEndOf="@id/btnPrev"
+        app:layout_constraintEnd_toStartOf="@id/btnNext"
+        android:textColor="@color/textPrimary"
+        android:text="FEB"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/btnNext"
+        android:src="@drawable/ic_chevron_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/space_m"
+        android:layout_width="@dimen/size_s"
+        android:layout_height="@dimen/size_s"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDays"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/space_m"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="7"
+        tools:listitem="@layout/item_cal_day"
+        tools:itemCount="7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDates"
+        app:layout_constraintTop_toBottomOf="@id/btnNext"
+        app:layout_constraintBottom_toTopOf="@id/rvDays"
+        android:layout_marginTop="@dimen/space_m"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/item_cal_date"
+        app:spanCount="7"
+        tools:itemCount="31"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -155,6 +155,7 @@
     <string name="itemName">Item Name</string>
     <string name="count">Count</string>
     <string name="usage">Usage:</string>
+    <string name="system">System:</string>
     <string name="pack">Pack</string>
     <string name="loose">Loose</string>
     <string name="stock_count">Stock Count</string>

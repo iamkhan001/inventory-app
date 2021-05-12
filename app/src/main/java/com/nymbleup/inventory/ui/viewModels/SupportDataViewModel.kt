@@ -26,6 +26,16 @@ class SupportDataViewModel: ViewModel() {
 
     private var apiCallCount = 0
 
+    val mShowingWeekDates = MutableLiveData<String>()
+    val mShowingDayDates = MutableLiveData<String>()
+    var mIsLoadingSchedule = MutableLiveData<Boolean>()
+    val mDateRange = MutableLiveData<ArrayList<String>>()
+    var viewType = ScheduleView.WEEK
+
+
+    var dateStart = MyDateTimeUtils.getDateToday()
+    var dateEnd = MyDateTimeUtils.getDateToday()
+
     companion object {
         private const val TAG = "SVM"
         private const val TOTAL_API_CALLS = 5

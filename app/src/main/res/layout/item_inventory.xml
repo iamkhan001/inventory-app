@@ -40,8 +40,8 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/tvUsage"
-                android:text="@string/usage"
+                android:id="@+id/tvSystem"
+                android:text="@string/system"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_sm"
@@ -55,7 +55,7 @@
                 android:textSize="@dimen/text_sm"
                 android:text="40"
                 android:layout_marginStart="@dimen/space_m"
-                app:layout_constraintStart_toEndOf="@id/tvUsage"
+                app:layout_constraintStart_toEndOf="@id/tvSystem"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
