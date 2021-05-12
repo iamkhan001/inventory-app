@@ -13,10 +13,30 @@ import com.nymbleup.inventory.databinding.ItemOrderListBinding
 import com.nymbleup.inventory.models.orders.Order
 import com.nymbleup.inventory.utils.MyDateTimeUtils
 
-class OrderListAdapter(private val context: Context,val onItemClickListener: OnItemClickListener<Order>):RecyclerView.Adapter<OrderListAdapter.MyViewHolder>() {
+class OrderListAdapter(private val onItemClickListener: OnItemClickListener<Order>):RecyclerView.Adapter<OrderListAdapter.MyViewHolder>() {
+
     var list = ArrayList<Order>()
 
-    fun setDeta(list:ArrayList<Order>){
+    companion object {
+
+        fun getOrderStatusName(status: String): String =  when(status){
+            "cancelled" -> {
+               "Cancelled"
+            }
+            "recieved_closed" -> {
+                "Closed"
+            }
+            "dispatched" ->{
+                "Dispatched"
+            }
+            else -> {
+                status
+            }
+        }
+
+    }
+
+    fun setData(list:ArrayList<Order>){
         this.list = list
 
         notifyDataSetChanged()
@@ -45,17 +65,19 @@ class OrderListAdapter(private val context: Context,val onItemClickListener: OnI
             holder.binding.tvCreaterName.text= "Created by: ${order.createdBy.firstName} ${order.createdBy.lastName}"
         holder.binding.tvDateAndTime.text= MyDateTimeUtils.formatDate(order.dateEstimated)
         holder.binding.btnRecAndCan.setBackgroundResource(R.drawable.bg_box_green)
-        holder.binding.btnRecAndCan.text = order.status
 
         Log.d("order","status > ${order.status}")
 
         when(order.status){
-
             "cancelled" -> {
                 holder.binding.btnRecAndCan.setBackgroundResource(R.drawable.bg_box_red)
             }
             "recieved_closed" -> {
                 holder.binding.btnRecAndCan.text = "Closed"
+            }
+
+            "dispatched" ->{
+                holder.binding.btnRecAndCan.text="Dispatched"
             }
 
             else -> {

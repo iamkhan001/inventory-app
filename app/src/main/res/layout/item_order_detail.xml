@@ -33,30 +33,27 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/space_ss"
             android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvItemName"
                 android:layout_width="0dp"
-                android:gravity="center"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/space_m"
+                android:layout_marginHorizontal="@dimen/space_m"
                 android:maxLines="1"
                 android:text="@string/itemName"
+                android:textSize="@dimen/text_m"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/space_l"
                 app:layout_constraintEnd_toStartOf="@+id/imgPackMinus"
-                app:layout_constraintHorizontal_bias="0.451"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.345" />
-
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/tvItemDescription"
                 android:layout_width="0dp"
-                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_m"
                 android:layout_marginTop="8dp"
@@ -69,27 +66,42 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvItemName" />
 
+            <TextView
+                android:id="@+id/tvItemBatch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_m"
+                android:layout_marginTop="8dp"
+                android:maxLines="2"
+                android:text="@string/itemName"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_s"
+                app:layout_constraintEnd_toStartOf="@+id/imgPackMinus"
+                app:layout_constraintHorizontal_bias="0.42"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvItemDescription" />
+
             <ImageView
                 android:id="@+id/imgPackMinus"
                 android:layout_width="@dimen/size_n"
                 android:layout_height="@dimen/size_n"
                 android:src="@drawable/ic_minus"
+                android:layout_marginEnd="@dimen/space_m"
+                app:layout_constraintEnd_toStartOf="@id/etPack"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.584"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
+                android:inputType="number"
+                android:digits="0987654321"
                 android:id="@+id/etPack"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_m"
                 android:gravity="center_horizontal"
                 android:text="0"
-                android:digits="0123456789"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imgPackMinus"
+                app:layout_constraintEnd_toStartOf="@id/imgPackAdd"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -98,8 +110,9 @@
                 android:layout_height="@dimen/size_n"
                 android:layout_marginStart="@dimen/space_m"
                 android:src="@drawable/ic_plus"
+                android:layout_marginEnd="@dimen/space_m"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/etPack"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

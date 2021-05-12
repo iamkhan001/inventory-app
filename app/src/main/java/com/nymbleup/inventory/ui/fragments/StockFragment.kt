@@ -1,6 +1,8 @@
 package com.nymbleup.inventory.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -12,9 +14,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mirobotic.dialog.myDialog.SweetAlertDialog
 import com.nymbleup.inventory.databinding.FragmentStockBinding
+import com.nymbleup.inventory.models.ScheduleView
 import com.nymbleup.inventory.repo.UIApiCallResponseListener
 import com.nymbleup.inventory.ui.adapters.InventoryAdapter
+import com.nymbleup.inventory.ui.adapters.OnItemClickListener
 import com.nymbleup.inventory.ui.adapters.OutletsAdapter
+import com.nymbleup.inventory.ui.adapters.calendar.DateRangeAdapter
+import com.nymbleup.inventory.ui.dialogs.CalendarDialog
 import com.nymbleup.inventory.ui.viewModels.SupportDataViewModel
 import com.nymbleup.inventory.utils.KeyboardUtils
 import com.nymbleup.inventory.utils.MyDateTimeUtils
@@ -25,6 +31,34 @@ class StockFragment : Fragment() {
     private val dataViewModel: SupportDataViewModel by activityViewModels()
     private var alertDialog: SweetAlertDialog? = null
     private var inventoryAdapter: InventoryAdapter? = null
+
+    private val handler = Handler(Looper.getMainLooper())
+
+    private val onDateRangeSelectedListener = object : CalendarDialog.OnDateRangeSelectedListener {
+
+        override fun onRangeSelected(dateStart: String, dateEnd: String) {
+
+        }
+
+        override fun onDateSelected(date: String) {
+            if (checkIfDataLoading()) {
+                return
+            }
+
+            binding.filter.spnLocation.isEnabled = true
+            binding.filter.imgFilter.isEnabled = true
+            binding.filter.imgSearch.isEnabled = true
+            binding.progressBar.visibility = View.GONE
+            dataViewModel.loadInventory(uiApiCallResponseListener)
+
+            handler.postDelayed({ CalendarDialog.hide() }, 200)
+        }
+
+    }
+
+    private fun checkIfDataLoading(): Boolean {
+        return (dataViewModel.mIsLoadingSchedule.value == true || dataViewModel.isLoading.value == true)
+    }
 
     private val stockApiCallResponseListener = object : UIApiCallResponseListener {
 
@@ -90,6 +124,22 @@ class StockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        dataViewModel.mShowingDayDates.observe(viewLifecycleOwner, {
+            binding.filter.tvDate.text = it
+        })
+
+        binding.filter.tvDate.setOnClickListener {
+
+//            CalendarDialog.show(
+//                ScheduleView.DAY,
+//                dataViewModel.dateStart,
+//                childFragmentManager,
+//                onDateRangeSelectedListener
+//            )
+        }
+
+        binding.filter.tvDate.text = MyDateTimeUtils.getDatePretty()
 
         dataViewModel.mOutlets.observe(viewLifecycleOwner, {
             val outletAdapter = OutletsAdapter(it)

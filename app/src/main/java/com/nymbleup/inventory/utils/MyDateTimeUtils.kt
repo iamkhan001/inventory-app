@@ -51,6 +51,19 @@ object MyDateTimeUtils {
         return dateFormat.format(cal.time)
     }
 
+    fun getPrevYesterday(dateString: String): String {
+        try {
+            val date = dateFormat.parse(dateString)!!
+            val cal = Calendar.getInstance()
+            cal.time = date
+            cal.add(Calendar.DATE, -1)
+            return dateFormat.format(cal.time)
+        }catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return ""
+    }
+
     fun getDateTimeToday(): String = formatDateTime.format(Date())
 
 

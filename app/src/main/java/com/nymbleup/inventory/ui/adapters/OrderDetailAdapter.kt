@@ -9,10 +9,11 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.nymbleup.inventory.databinding.ItemOrderDetailBinding
-import com.nymbleup.inventory.models.Item
 import com.nymbleup.inventory.models.orders.Items
+import java.util.*
+import kotlin.collections.ArrayList
 
-class OrderDetailAdapter: RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder>(), Filterable {
+class OrderDetailAdapter(private val status :String) : RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder>(), Filterable {
 
     private var list = ArrayList<Items>()
     private var filterList = ArrayList<Items>()
@@ -44,8 +45,10 @@ class OrderDetailAdapter: RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder>(
         item.init()
         val binding = holder.binding
 
-        binding.tvItemName.text = item.itemInfo.article.name
-        binding.tvItemDescription.text = "${item.itemInfo.article.code}\n1 pack = ${item.itemInfo.article.primaryShelfLife} each"
+        binding.tvItemName.text = item.itemInfo.article.name.capitalize(Locale.ENGLISH)
+        binding.tvItemDescription.text = "${item.itemInfo.article.code}\n1 pack = ${item.unitConversion} ${item.unit}"
+
+        binding.tvItemBatch.text = "Batch No: ${item.batchNumber}"
 
         binding.etPack.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -84,7 +87,15 @@ class OrderDetailAdapter: RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder>(
 
         binding.etPack.setText(item.newQty.toString())
 
-
+        if (status == "dispatched"){
+            binding.imgPackAdd.isEnabled = true
+            binding.etPack.isEnabled = true
+            binding.imgPackMinus.isEnabled = true
+        }else{
+            binding.imgPackAdd.isEnabled = false
+            binding.etPack.isEnabled = false
+            binding.imgPackMinus.isEnabled = false
+        }
     }
 
     override fun getItemCount(): Int {

@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.nymbleup.inventory.databinding.ItemTextBinding
 import com.nymbleup.inventory.models.Outlet
+import java.util.*
+import kotlin.collections.ArrayList
 
 class OutletsAdapter(private var list: ArrayList<Outlet>) : BaseAdapter() {
 
@@ -24,7 +26,7 @@ class OutletsAdapter(private var list: ArrayList<Outlet>) : BaseAdapter() {
         }
 
         val data = list[position]
-        vh.binding.tvName.text = data.name
+        vh.binding.tvName.text = data.name.capitalize(Locale.ENGLISH)
 
         return vh.binding.root
     }

@@ -11,6 +11,7 @@ import com.nymbleup.inventory.databinding.FragmentOrderDetailBinding
 import com.nymbleup.inventory.models.orders.Order
 import com.nymbleup.inventory.repo.UIApiCallResponseListener
 import com.nymbleup.inventory.ui.adapters.OrderDetailAdapter
+import com.nymbleup.inventory.ui.adapters.OrderListAdapter.Companion.getOrderStatusName
 import com.nymbleup.inventory.ui.viewModels.SupportDataViewModel
 import com.nymbleup.inventory.utils.MyDateTimeUtils
 import com.nymbleup.inventory.utils.MyMessage
@@ -20,6 +21,24 @@ class OrderDetailFragment : Fragment() {
     private var safeBinding : FragmentOrderDetailBinding? = null
     private val binding get() = safeBinding!!
 
+    private val dataViewModel: SupportDataViewModel by activityViewModels()
+    private var alertDialog: SweetAlertDialog? = null
+    private var isReady = false
+
+    private val uiApiCallResponseListener = object : UIApiCallResponseListener {
+        override fun onFailed(msg: String) {
+            isReady = true
+            binding.progressBar.visibility = View.GONE
+            dataViewModel.mOrders.postValue(ArrayList())
+        }
+
+        override fun onSuccess(msg: String) {
+            isReady = true
+            binding.progressBar.visibility = View.GONE
+        }
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,9 +47,7 @@ class OrderDetailFragment : Fragment() {
         return binding.root
     }
 
-    private var alertDialog: SweetAlertDialog? = null
-    private lateinit var orderDetailAdapter: OrderDetailAdapter
-    private val dataViewModel: SupportDataViewModel by activityViewModels()
+    private var orderDetailAdapter: OrderDetailAdapter? = null
 
     private val orderApiCallResponseListener = object : UIApiCallResponseListener {
 
@@ -42,7 +59,7 @@ class OrderDetailFragment : Fragment() {
             alertDialog?.setConfirmClickListener {
                 it.dismissWithAnimation()
                 binding.btnUpdate.isEnabled = true
-                orderDetailAdapter.disableClicks = false
+                orderDetailAdapter?.disableClicks = false
             }
         }
 
@@ -55,7 +72,7 @@ class OrderDetailFragment : Fragment() {
             alertDialog?.setConfirmClickListener {
                 it.dismissWithAnimation()
                 binding.btnUpdate.isEnabled = true
-                orderDetailAdapter.disableClicks = false
+                orderDetailAdapter?.disableClicks = false
             }
         }
     }
@@ -69,10 +86,10 @@ class OrderDetailFragment : Fragment() {
         binding.tvPoNumberDetail.text = order.code
         binding.tvCreateOnDetail.text = MyDateTimeUtils.formatDate(order.createdOn)
         binding.tvDeliveryDateDetail.text = MyDateTimeUtils.formatDate(order.dateDelivered)
-        binding.tvOrderStatusDetail.text = order.status
-        binding.tvItemCount.text = "${order.items.size}"
+        binding.tvOrderStatusDetail.text = getOrderStatusName(order.status)
+        binding.tvItemCount.text = "${order.items.size} items"
 
-        orderDetailAdapter = OrderDetailAdapter()
+        val orderDetailAdapter = OrderDetailAdapter(order.status)
         binding.rvOrderDetail.adapter = orderDetailAdapter
         orderDetailAdapter.setData(order.items)
 

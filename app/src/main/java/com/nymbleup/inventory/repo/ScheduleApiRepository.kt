@@ -38,11 +38,21 @@ class ScheduleApiRepository(context: Context) {
                 try {
                     val data = JSONArray(response)
 
-                    val list = DataConverter.toOutletList(data)
-                    dbHelper.saveOutlets(list)
-                    if (list.size == 1) {
-                        TOTAL_STORES = list.size
-                        storeDataProvider.saveStore(list[0])
+                    val dataList = DataConverter.toOutletList(data)
+                    val list = ArrayList<Outlet>()
+
+                    for (item in dataList) {
+                        if (item.type == "central_kitchen" || item.type == "store") {
+                            list.add(item)
+                        }
+                    }
+
+                    if (list.isNotEmpty()) {
+                        dbHelper.saveOutlets(list)
+                        if (list.size == 1) {
+                            TOTAL_STORES = list.size
+                            storeDataProvider.saveStore(list[0])
+                        }
                     }
 
                     Log.e(TAG,"OUTLETS > $TOTAL_STORES")
@@ -383,12 +393,14 @@ class ScheduleApiRepository(context: Context) {
 
     }
 
-    fun loadOrders(mOrder: MutableLiveData<ArrayList<Order>>, responseListener: UIApiCallResponseListener){
+    fun loadOrders(dateStart: String, dateEnd: String,  mOrder: MutableLiveData<ArrayList<Order>>, responseListener: UIApiCallResponseListener){
         val outlets = arrayOf(storeDataProvider.getStoreId())
 
         val parameters = HashMap<String, Any?>()
-        parameters["date_start"] = "2020-08-15"
-        parameters["date_end"] =  "2020-11-24"
+        parameters["date_start"] = dateStart
+        parameters["date_end"] =  dateEnd
+//        parameters["date_start"] = "2020-08-15"
+//        parameters["date_end"] =  "2020-11-24"
         parameters["outlet"] = outlets
         parameters["vendor"] = arrayListOf<String>()
         parameters["status"] = arrayListOf<String>()

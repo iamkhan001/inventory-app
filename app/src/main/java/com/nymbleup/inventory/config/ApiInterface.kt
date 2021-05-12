@@ -52,7 +52,7 @@ interface ApiInterface {
     fun departments(@Body body: HashMap<String, String>): Call<ResponseBody>
 
     @GET("api/v1/outlet/")
-    fun outlets(@Query("get_all") getAll: Boolean = true, @Query("type") type: String = "store"): Call<ResponseBody>
+    fun outlets(@Query("get_all") getAll: Boolean = true): Call<ResponseBody>
 
     @GET("api/v1/settings/business/days/get_all_store_times/")
     fun getStoreTiming(@Query("store") store: String): Call<ResponseBody>

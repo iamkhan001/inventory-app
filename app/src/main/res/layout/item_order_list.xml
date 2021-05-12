@@ -31,6 +31,7 @@
             android:layout_width="100dp"
             android:layout_height="@dimen/size_s"
             android:layout_margin="@dimen/space_m"
+            android:textAllCaps="true"
             android:background="@drawable/bg_button_green_r_4"
             android:text="Received"
             android:textSize="@dimen/text_sm"

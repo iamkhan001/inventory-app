@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nymbleup.inventory.R
 import com.nymbleup.inventory.databinding.ItemInventoryBinding
 import com.nymbleup.inventory.models.Item
+import java.util.*
+import kotlin.collections.ArrayList
 
 class InventoryAdapter(private val context: Context): RecyclerView.Adapter<InventoryAdapter.MyViewHolder>(), Filterable {
 
@@ -42,9 +44,9 @@ class InventoryAdapter(private val context: Context): RecyclerView.Adapter<Inven
 
         val binding = holder.binding
 
-        binding.tvItemName.text = item.article.name
-        binding.tvDescription.text = "${item.article.code}\n1 pack = ${getIntVal(item.article.orderUnitConversion)}"
-
+        binding.tvItemName.text = item.article.name.capitalize(Locale.ENGLISH)
+        binding.tvDescription.text = "${item.article.code}\n1 pack = ${getIntVal(item.article.orderUnitConversion)} ${item.article.baseUnit}"
+        binding.tvCode.text = "Batch: ${item.code}"
         binding.tvPackCount.text = item.quantity.toString()
         binding.tvLooseCount.text = item.looseQuantity.toString()
 

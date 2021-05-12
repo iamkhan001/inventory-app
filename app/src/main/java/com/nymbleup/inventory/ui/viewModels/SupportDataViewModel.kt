@@ -26,6 +26,14 @@ class SupportDataViewModel: ViewModel() {
 
     private var apiCallCount = 0
 
+    val mShowingDayDates = MutableLiveData<String>()
+    var mIsLoadingSchedule = MutableLiveData<Boolean>()
+    val mDateRange = MutableLiveData<ArrayList<String>>()
+    var viewType = ScheduleView.WEEK
+
+    var dateStart = MyDateTimeUtils.getDateYesterday()
+    var dateEnd = MyDateTimeUtils.getDateToday()
+
     companion object {
         private const val TAG = "SVM"
         private const val TOTAL_API_CALLS = 5
@@ -157,7 +165,7 @@ class SupportDataViewModel: ViewModel() {
 
     fun loadInventory(uiApiCallResponseListener: UIApiCallResponseListener) {
         viewModelScope.launch {
-            scheduleApiRepository.loadInventory(mInventory, uiApiCallResponseListener)
+            scheduleApiRepository.loadInventory( mInventory, uiApiCallResponseListener)
         }
     }
 
@@ -171,7 +179,7 @@ class SupportDataViewModel: ViewModel() {
 
     fun loadOrders(uiApiCallResponseListener: UIApiCallResponseListener){
         viewModelScope.launch {
-            scheduleApiRepository.loadOrders(mOrders,uiApiCallResponseListener)
+            scheduleApiRepository.loadOrders(dateStart, dateEnd, mOrders,uiApiCallResponseListener)
         }
     }
 
@@ -179,5 +187,12 @@ class SupportDataViewModel: ViewModel() {
         viewModelScope.launch {
             scheduleApiRepository.updateOrderItems(orderId, orderItems, orderApiCallResponseListener)
         }
+    }
+
+    fun setOrderDate(date: String, uiApiCallResponseListener: UIApiCallResponseListener) {
+        mShowingDayDates.postValue(MyDateTimeUtils.formatDate(date))
+        dateEnd = date
+        dateStart = MyDateTimeUtils.getPrevYesterday(date)
+        loadOrders(uiApiCallResponseListener)
     }
 }
