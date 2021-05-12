@@ -87,6 +87,7 @@
                 android:layout_marginStart="@dimen/space_m"
                 android:gravity="center_horizontal"
                 android:text="0"
+                android:digits="0123456789"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgPackMinus"
                 app:layout_constraintTop_toTopOf="parent" />

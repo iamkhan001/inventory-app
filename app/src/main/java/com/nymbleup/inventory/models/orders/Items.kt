@@ -19,16 +19,12 @@ class Items(
 
 
 ){
-    var newPackQty = 0
-    var newLooseQty = 0
+    var newQty = 0
 
     fun init() {
-        Log.d("item", "item > ${itemInfo.article.name} > $quantity ? $newPackQty")
-        if (newPackQty == 0) {
-            newPackQty = quantity
-        }
-        if (newLooseQty == 0) {
-            newLooseQty = quantity
+        Log.d("item", "item > ${itemInfo.article.name} > $quantity ? $newQty")
+        if (newQty == 0) {
+            newQty = quantity
         }
     }
 

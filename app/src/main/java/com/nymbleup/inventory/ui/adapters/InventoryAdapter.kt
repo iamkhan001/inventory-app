@@ -94,6 +94,9 @@ class InventoryAdapter(private val context: Context): RecyclerView.Adapter<Inven
             if (disableClicks) {
                 return@setOnClickListener
             }
+            if (item.newPackQty == 0) {
+                return@setOnClickListener
+            }
             item.newPackQty -= 1
             list[position] = item
             binding.etPack.setText(item.newPackQty.toString())
@@ -112,6 +115,9 @@ class InventoryAdapter(private val context: Context): RecyclerView.Adapter<Inven
 
         binding.imgLooseMinus.setOnClickListener {
             if (disableClicks) {
+                return@setOnClickListener
+            }
+            if (item.newLooseQty == 0) {
                 return@setOnClickListener
             }
             item.newLooseQty -= 1

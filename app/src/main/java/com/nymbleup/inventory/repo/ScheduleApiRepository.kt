@@ -422,8 +422,39 @@ class ScheduleApiRepository(context: Context) {
                 }
                 it.printStackTrace()
             }))
+    }
+
+    fun updateOrderItems(orderId: String, items: ArrayList<HashMap<String, Any?>>, responseListener: UIApiCallResponseListener) {
+
+        compositeDisposable.add(apiInterface.updateOrderItems(orderId, items)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+
+                try {
+                    val response = it.string().trim()
+                    Log.e(TAG, "fetchData > $response")
+                    responseListener.onSuccess("")
+                    return@subscribe
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+                responseListener.onFailed("Server Error")
+            }, {
+
+                if (it is HttpException) {
+                    val exception: HttpException = it
+                    val response = exception.response()
+
+                    Log.e(TAG,"Error: ${response?.code()} \n${response?.errorBody()}")
+                    responseListener.onFailed("Error")
+                }
+                it.printStackTrace()
+            }))
 
     }
+
 }
 
 

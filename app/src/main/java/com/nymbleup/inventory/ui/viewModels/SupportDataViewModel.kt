@@ -174,4 +174,10 @@ class SupportDataViewModel: ViewModel() {
             scheduleApiRepository.loadOrders(mOrders,uiApiCallResponseListener)
         }
     }
+
+    fun updateOrderItems(orderId: String, orderItems: ArrayList<HashMap<String, Any?>>, orderApiCallResponseListener: UIApiCallResponseListener) {
+        viewModelScope.launch {
+            scheduleApiRepository.updateOrderItems(orderId, orderItems, orderApiCallResponseListener)
+        }
+    }
 }

@@ -1,24 +1,18 @@
 package com.nymbleup.inventory.ui.adapters
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.nymbleup.inventory.R
-import com.nymbleup.inventory.databinding.ItemInventoryBinding
 import com.nymbleup.inventory.databinding.ItemOrderDetailBinding
 import com.nymbleup.inventory.models.Item
 import com.nymbleup.inventory.models.orders.Items
 
-class OrderDetailAdapter(private val context: Context) :
-    RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder>(), Filterable {
+class OrderDetailAdapter: RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder>(), Filterable {
 
     private var list = ArrayList<Items>()
     private var filterList = ArrayList<Items>()
@@ -58,7 +52,7 @@ class OrderDetailAdapter(private val context: Context) :
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                item.newPackQty = InventoryAdapter.getIntVal(s.toString())
+                item.newQty = InventoryAdapter.getIntVal(s.toString())
                 list[position] = item
             }
 
@@ -71,25 +65,27 @@ class OrderDetailAdapter(private val context: Context) :
             if (disableClicks) {
                 return@setOnClickListener
             }
-            item.newPackQty += 1
+            item.newQty += 1
             list[position] = item
-            binding.etPack.setText(item.newPackQty.toString())
+            binding.etPack.setText(item.newQty.toString())
         }
 
         binding.imgPackMinus.setOnClickListener {
             if (disableClicks) {
                 return@setOnClickListener
             }
-            item.newPackQty -= 1
+            if (item.newQty == 0) {
+                return@setOnClickListener
+            }
+            item.newQty -= 1
             list[position] = item
-            binding.etPack.setText(item.newPackQty.toString())
+            binding.etPack.setText(item.newQty.toString())
         }
 
-        binding.etPack.setText(item.newPackQty.toString())
+        binding.etPack.setText(item.newQty.toString())
 
 
     }
-
 
     override fun getItemCount(): Int {
         return filterList.size
@@ -100,6 +96,8 @@ class OrderDetailAdapter(private val context: Context) :
     }
 
     var disableClicks = false
+
+    fun getList(): ArrayList<Items> = list
 
 }
 

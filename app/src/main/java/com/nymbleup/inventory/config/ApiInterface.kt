@@ -44,6 +44,9 @@ interface ApiInterface {
     @POST("/api/v1/outlet/{store}/stock-count/{date}/save/")
     fun saveStockCount(@Path("store") store: String, @Path("date") date: String, @Body stocks: ArrayList<HashMap<String, Any?>>): Observable<ResponseBody>
 
+    @PATCH("/api/v1/orders/{order}/items/update/")
+    fun updateOrderItems(@Path("order") order: String, @Body stocks: ArrayList<HashMap<String, Any?>>): Observable<ResponseBody>
+
     //GENERAL INFO
     @POST("api/v1/read/store-departments/")
     fun departments(@Body body: HashMap<String, String>): Call<ResponseBody>

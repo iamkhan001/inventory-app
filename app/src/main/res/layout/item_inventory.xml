@@ -135,6 +135,7 @@
                 app:layout_constraintStart_toEndOf="@id/imgPackMinus"
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="0"
+                android:digits="0123456789"
                 android:gravity="center_horizontal"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"/>
@@ -185,6 +186,7 @@
                 android:layout_marginTop="@dimen/space_l"
                 android:layout_marginStart="@dimen/space_m"
                 android:text="0"
+                android:digits="0123456789"
                 android:gravity="center_horizontal"
                 app:layout_constraintStart_toEndOf="@id/imgLooseMinus"
                 app:layout_constraintTop_toBottomOf="@id/imgPackAdd"
